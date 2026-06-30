@@ -113,6 +113,40 @@
         }
         .tombol-kompak:hover::after { left: 100%; }
 
+        /* === STYLE BARU: LINK BUTTON SEDERHANA === */
+        .link-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            width: 100%;
+            padding: 1rem 1.5rem;
+            background: rgba(253, 251, 247, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(166, 123, 91, 0.25);
+            border-radius: 1rem;
+            color: #4A3018;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        .link-button:hover {
+            background: #A67B5B;
+            color: #FDFBF7;
+            border-color: #A67B5B;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(166, 123, 91, 0.3);
+        }
+        .link-button i {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+
         .kartu-album {
             transform-style: preserve-3d;
             transition: transform 0.1s ease-out, box-shadow 0.3s ease;
@@ -261,13 +295,12 @@
                     bg_ikon: "bg-pink-500/10"
                 },
                 { 
-                    nama: "Dndbouquet", 
-                    sub_teks: "Decoration & Seserahan", 
+                    // === TOMBOL INI SUDAH DIGANTI KE FORMAT BARU (gaya_sederhana: true) ===
+                    gaya_sederhana: true,
+                    nama_tampil: "Dndbouquet (Decoration & Seserahan)",
                     ikon: "flower-2", 
-                    tautan: "https://www.instagram.com/dndbouquet.mu", 
-                    utama: false,
-                    warna_ikon: "text-coklatAksen",
-                    bg_ikon: "bg-coklatMuda/10"
+                    tautan: "https://www.instagram.com/dndbouquet.mu?igsh=MW1jcmE2NXhxYnljeQ==",
+                    delay: 400
                 },
                 { 
                     nama: "TikTok", 
@@ -329,8 +362,8 @@
             document.getElementById('teks-slogan').textContent = dataWebsite.identitas.deskripsi;
 
             const kontainerLayanan = document.getElementById('kontainer-layanan');
-            // PERBAIKAN BUG DI BARIS INI (Mengambil dari dataWebsite.layanan)
             dataWebsite.layanan.forEach(layanan => {
+                if (!layanan.ikon) return;
                 const badge = document.createElement('div');
                 badge.className = "kaca px-4 py-2 rounded-full flex items-center gap-2 text-xs font-semibold text-coklatTua shadow-sm";
                 badge.innerHTML = `<i data-lucide="${layanan.ikon}" class="w-3.5 h-3.5 text-coklatMuda"></i><span>${layanan.teks}</span>`;
@@ -342,6 +375,24 @@
             const kontainer = document.getElementById('kontainer-sosial');
             
             dataWebsite.sosial_media.forEach((item, indeks) => {
+                // === LOGIKA BARU: Jika item memiliki property `gaya_sederhana`, render dengan format link-button ===
+                if (item.gaya_sederhana) {
+                    const tombol = document.createElement('a');
+                    tombol.href = item.tautan;
+                    tombol.target = "_blank";
+                    tombol.rel = "noopener noreferrer";
+                    tombol.className = "link-button";
+                    tombol.style.animationDelay = `${item.delay || 0}ms`;
+                    tombol.setAttribute('data-delay', item.delay || 0);
+                    tombol.innerHTML = `
+                        <i data-lucide="${item.ikon}"></i>
+                        <span>${item.nama_tampil}</span>
+                    `;
+                    kontainer.appendChild(tombol);
+                    return;
+                }
+
+                // === FORMAT LAMA: Tombol kompleks (untuk item yang belum Anda sesuaikan) ===
                 const tombol = document.createElement('a');
                 tombol.href = item.tautan;
                 tombol.target = "_blank";
