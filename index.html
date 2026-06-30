@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Monoga Photobooth - Your Story Instantly Captured. Booking, Pricelist, dan Download Album Foto Acara Anda.">
+    <title>Monoga Photobooth | Official Linktree & Album Hub</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        kremBersih: '#FDFBF7',
+                        coklatMuda: '#A67B5B',
+                        coklatTua: '#4A3018',
+                        kremGelap: '#F3EFE9',
+                        coklatAksen: '#8B5A3C',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 1s cubic-bezier(0.22, 1, 0.36, 1) forwards',
+                        'fade-in-down': 'fadeInDown 1s cubic-bezier(0.22, 1, 0.36, 1) forwards',
+                        'scale-in': 'scaleIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards',
+                        'shimmer': 'shimmer 3s linear infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'blob': 'blob 20s infinite',
+                        'marquee': 'marquee 25s linear infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: { '0%': { opacity: '0', transform: 'translateY(40px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+                        fadeInDown: { '0%': { opacity: '0', transform: 'translateY(-40px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+                        scaleIn: { '0%': { opacity: '0', transform: 'scale(0.9)' }, '100%': { opacity: '1', transform: 'scale(1)' } },
+                        shimmer: { '0%': { backgroundPosition: '-200% 0' }, '100%': { backgroundPosition: '200% 0' } },
+                        float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-10px)' } },
+                        blob: { '0%, 100%': { transform: 'translate(0, 0) scale(1)' }, '33%': { transform: 'translate(30px, -50px) scale(1.1)' }, '66%': { transform: 'translate(-20px, 20px) scale(0.9)' } },
+                        marquee: { '0%': { transform: 'translateX(0%)' }, '100%': { transform: 'translateX(-50%)' } }
+                    },
+                }
+            }
+        }
+    </script>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        html { scroll-behavior: smooth; }
+        
+        body {
+            background-color: #FDFBF7;
+            color: #4A3018;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #F3EFE9; }
+        ::-webkit-scrollbar-thumb { background: #A67B5B; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #4A3018; }
+
+        #preloader {
+            position: fixed; inset: 0; background: #FDFBF7; z-index: 9999;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+        #preloader.hilang { opacity: 0; visibility: hidden; pointer-events: none; }
+        
+        .lensa-kamera {
+            width: 60px; height: 60px; border: 3px solid #A67B5B; border-radius: 50%;
+            position: relative; display: flex; align-items: center; justify-content: center;
+        }
+        .lensa-kamera::before {
+            content: ''; position: absolute; width: 40px; height: 40px;
+            background: #4A3018; border-radius: 50%; animation: pulse-lensa 1.5s infinite;
+        }
+        @keyframes pulse-lensa {
+            0%, 100% { transform: scale(0.8); opacity: 0.5; }
+            50% { transform: scale(1); opacity: 1; }
+        }
+
+        .noise-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 50; opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .mesh-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden; }
+        .blob { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.4; }
+        .blob-1 { top: -10%; left: -10%; width: 500px; height: 500px; background: #F3EFE9; }
+        .blob-2 { top: 20%; right: -10%; width: 600px; height: 600px; background: #A67B5B; opacity: 0.15; }
+        .blob-3 { bottom: -20%; left: 20%; width: 700px; height: 700px; background: #8B5A3C; opacity: 0.1; }
+
+        .kaca {
+            background: rgba(253, 251, 247, 0.6);
+            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(166, 123, 91, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(74, 48, 24, 0.05);
+        }
+        
+        .tombol-kompak { position: relative; overflow: hidden; }
+        .tombol-kompak::after {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            transition: left 0.6s ease;
+        }
+        .tombol-kompak:hover::after { left: 100%; }
+
+        .kartu-album {
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease-out, box-shadow 0.3s ease;
+            will-change: transform;
+        }
+        .kartu-album:hover { box-shadow: 0 25px 50px -12px rgba(74, 48, 24, 0.25); }
+        .konten-kartu { transform: translateZ(30px); }
+        .tanggal-lencana { transform: translateZ(50px); }
+
+        .reveal {
+            opacity: 0; transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal.muncul { opacity: 1; transform: translateY(0); }
+
+        .teks-shimmer {
+            background: linear-gradient(90deg, #4A3018 0%, #A67B5B 25%, #4A3018 50%, #A67B5B 75%, #4A3018 100%);
+            background-size: 200% 100%;
+            -webkit-background-clip: text; background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 4s linear infinite;
+        }
+
+        .marquee-container {
+            overflow: hidden; white-space: nowrap;
+            border-top: 1px solid rgba(166, 123, 91, 0.2);
+            border-bottom: 1px solid rgba(166, 123, 91, 0.2);
+            padding: 1rem 0;
+        }
+        .marquee-konten { display: inline-block; animation: marquee 25s linear infinite; }
+        .marquee-item {
+            display: inline-flex; align-items: center; gap: 0.5rem; padding: 0 2rem;
+            color: #A67B5B; font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.1rem;
+        }
+        
+        .delay-100 { transition-delay: 0.1s; animation-delay: 0.1s; }
+        .delay-200 { transition-delay: 0.2s; animation-delay: 0.2s; }
+        .delay-300 { transition-delay: 0.3s; animation-delay: 0.3s; }
+        .delay-400 { transition-delay: 0.4s; animation-delay: 0.4s; }
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+    <div id="preloader">
+        <div class="lensa-kamera mb-4"></div>
+        <p class="text-coklatMuda text-xs tracking-[0.3em] uppercase font-medium">Memuat Momen Anda</p>
+    </div>
+
+    <div class="mesh-bg">
+        <div class="blob blob-1 animate-blob"></div>
+        <div class="blob blob-2 animate-blob" style="animation-delay: -5s;"></div>
+        <div class="blob blob-3 animate-blob" style="animation-delay: -10s;"></div>
+    </div>
+    <div class="noise-overlay"></div>
+
+    <div id="progress-bar" class="fixed top-0 left-0 h-[2px] bg-coklatMuda z-[60]" style="width: 0%;"></div>
+
+    <main class="relative z-10 min-h-screen flex flex-col items-center px-4 py-12 md:py-20 max-w-2xl mx-auto">
+
+        <header class="text-center w-full mb-10 reveal">
+            <div class="relative inline-block mb-6 animate-scale-in">
+                <div class="absolute inset-0 bg-coklatMuda/20 rounded-full blur-xl animate-pulse"></div>
+                <div id="kontainer-logo" class="relative w-28 h-28 md:w-32 md:h-32 rounded-full border-4 border-kremBersih shadow-xl overflow-hidden bg-kremGelap flex items-center justify-center">
+                </div>
+                <div class="absolute bottom-2 right-2 bg-coklatMuda text-kremBersih p-1.5 rounded-full border-2 border-kremBersih shadow-md">
+                    <i data-lucide="check" class="w-3 h-3"></i>
+                </div>
+            </div>
+
+            <h1 id="teks-brand" class="text-4xl md:text-5xl font-bold text-coklatTua mb-3 tracking-tight reveal delay-100"></h1>
+            <p id="teks-slogan" class="text-coklatTua/70 text-base md:text-lg max-w-sm mx-auto mb-8 reveal delay-200"></p>
+
+            <div id="kontainer-layanan" class="flex flex-wrap justify-center gap-3 mb-8 reveal delay-300"></div>
+        </header>
+
+        <section id="kontainer-sosial" class="w-full space-y-3 mb-12 max-w-md mx-auto"></section>
+
+        <div class="w-full marquee-container mb-16 reveal delay-400">
+            <div class="marquee-konten">
+                <span class="marquee-item"><i data-lucide="sparkles" class="w-4 h-4"></i> Wedding</span>
+                <span class="marquee-item"><i data-lucide="star" class="w-4 h-4"></i> Corporate Event</span>
+                <span class="marquee-item"><i data-lucide="heart" class="w-4 h-4"></i> Engagement</span>
+                <span class="marquee-item"><i data-lucide="calendar" class="w-4 h-4"></i> Birthday</span>
+                <span class="marquee-item"><i data-lucide="flower-2" class="w-4 h-4"></i> Seserahan</span>
+                <span class="marquee-item"><i data-lucide="sparkles" class="w-4 h-4"></i> Wedding</span>
+                <span class="marquee-item"><i data-lucide="star" class="w-4 h-4"></i> Corporate Event</span>
+                <span class="marquee-item"><i data-lucide="heart" class="w-4 h-4"></i> Engagement</span>
+                <span class="marquee-item"><i data-lucide="calendar" class="w-4 h-4"></i> Birthday</span>
+                <span class="marquee-item"><i data-lucide="flower-2" class="w-4 h-4"></i> Seserahan</span>
+            </div>
+        </div>
+
+        <section class="w-full mb-20">
+            <div class="text-center mb-10 reveal">
+                <h2 class="text-2xl md:text-3xl font-bold teks-shimmer mb-2">Download Album Photobooth</h2>
+                <p class="text-coklatTua/60 text-sm">Temukan acara Anda dan unduh kenangan indah Anda</p>
+                <div class="flex items-center justify-center gap-2 mt-4 text-coklatMuda">
+                    <div class="h-[1px] w-12 bg-coklatMuda/30"></div>
+                    <i data-lucide="download" class="w-4 h-4"></i>
+                    <div class="h-[1px] w-12 bg-coklatMuda/30"></div>
+                </div>
+            </div>
+
+            <div id="kontainer-album" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+        </section>
+
+        <footer class="text-center text-coklatTua/40 text-xs font-medium tracking-wider uppercase reveal">
+            <div class="flex items-center justify-center gap-2 mb-4">
+                <i data-lucide="camera" class="w-4 h-4"></i>
+                <span>Monoga Photobooth</span>
+            </div>
+            <p>&copy; 2026 All Rights Reserved. Crafted with passion.</p>
+        </footer>
+
+    </main>
+
+    <script>
+        const dataWebsite = {
+            identitas: {
+                nama_brand: "Monoga Photobooth",
+                slogan: "Your Story, Instantly Captured.",
+                deskripsi: "Abadikan setiap detik berharga Anda bersama kami.",
+                logo_url: "" 
+            },
+            layanan: [
+                { ikon: "aperture", teks: "Photography & Videography" },
+                { ikon: "flower-2", teks: "Decoration & Seserahan" }
+            ],
+            sosial_media: [
+                { 
+                    nama: "WhatsApp", 
+                    sub_teks: "Pricelist & Booking", 
+                    ikon: "message-circle", 
+                    tautan: "https://wa.me/6281234567890", 
+                    utama: true,
+                    warna_ikon: "text-green-400",
+                    bg_ikon: "bg-green-500/20"
+                },
+                { 
+                    nama: "Instagram Monoga", 
+                    sub_teks: "Portfolio & Updates", 
+                    ikon: "instagram", 
+                    tautan: "https://instagram.com/monogaphotobooth", 
+                    utama: false,
+                    warna_ikon: "text-pink-600",
+                    bg_ikon: "bg-pink-500/10"
+                },
+                { 
+                    nama: "Dndbouquet", 
+                    sub_teks: "Decoration & Seserahan", 
+                    ikon: "flower-2", 
+                    tautan: "https://www.instagram.com/dndbouquet.mu", 
+                    utama: false,
+                    warna_ikon: "text-coklatAksen",
+                    bg_ikon: "bg-coklatMuda/10"
+                },
+                { 
+                    nama: "TikTok", 
+                    sub_teks: "Behind The Scenes", 
+                    ikon: "music-2", 
+                    tautan: "https://tiktok.com/@monogaphotobooth", 
+                    utama: false,
+                    warna_ikon: "text-coklatTua",
+                    bg_ikon: "bg-black/5"
+                }
+            ],
+            daftar_album: [
+                {
+                    nama: "Satya Space",
+                    tanggal: "20 Juni",
+                    kategori: "Yoga & Wellness Event",
+                    tautan: "https://lumabooth.com/fotoshare/satya-space",
+                    gambar: "https://images.unsplash.com/photo-1545205597-3d974715e169?w=800&q=80"
+                },
+                {
+                    nama: "A Plus Pilates X Earth Love Life",
+                    tanggal: "21 Juni",
+                    kategori: "Community Gathering",
+                    tautan: "https://lumabooth.com/fotoshare/aplus-pilates",
+                    gambar: "https://images.unsplash.com/photo-1518611012118-69608248394b?w=800&q=80"
+                },
+                {
+                    nama: "Alin & Ando (Wedding)",
+                    tanggal: "26 Juni",
+                    kategori: "Wedding Ceremony",
+                    tautan: "https://lumabooth.com/fotoshare/alin-ando",
+                    gambar: "https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80"
+                },
+                {
+                    nama: "Event Seren Lume Yoga",
+                    tanggal: "5 Juli",
+                    kategori: "Retreat & Workshop",
+                    tautan: "https://lumabooth.com/fotoshare/seren-lume",
+                    gambar: "https://images.unsplash.com/photo-1506126613408-cca075b400d2?w=800&q=80"
+                }
+            ]
+        };
+
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('preloader').classList.add('hilang');
+            }, 800);
+        });
+
+        function renderIdentitas() {
+            const kontainerLogo = document.getElementById('kontainer-logo');
+            if (dataWebsite.identitas.logo_url) {
+                kontainerLogo.innerHTML = `<img src="${dataWebsite.identitas.logo_url}" alt="Logo" class="w-full h-full object-cover">`;
+            } else {
+                kontainerLogo.innerHTML = `<div class="bg-coklatTua w-full h-full flex items-center justify-center"><i data-lucide="camera" class="w-12 h-12 text-kremBersih"></i></div>`;
+            }
+
+            document.getElementById('teks-brand').innerHTML = `Monoga <span class="font-serif italic font-normal">Photobooth</span>`;
+            document.getElementById('teks-slogan').textContent = dataWebsite.identitas.deskripsi;
+
+            const kontainerLayanan = document.getElementById('kontainer-layanan');
+            // PERBAIKAN BUG DI BARIS INI (Mengambil dari dataWebsite.layanan)
+            dataWebsite.layanan.forEach(layanan => {
+                const badge = document.createElement('div');
+                badge.className = "kaca px-4 py-2 rounded-full flex items-center gap-2 text-xs font-semibold text-coklatTua shadow-sm";
+                badge.innerHTML = `<i data-lucide="${layanan.ikon}" class="w-3.5 h-3.5 text-coklatMuda"></i><span>${layanan.teks}</span>`;
+                kontainerLayanan.appendChild(badge);
+            });
+        }
+
+        function renderSosialMedia() {
+            const kontainer = document.getElementById('kontainer-sosial');
+            
+            dataWebsite.sosial_media.forEach((item, indeks) => {
+                const tombol = document.createElement('a');
+                tombol.href = item.tautan;
+                tombol.target = "_blank";
+                tombol.rel = "noopener noreferrer";
+                
+                const kelasUtama = "bg-coklatTua text-kremBersih hover:bg-coklatAksen shadow-md hover:shadow-lg hover:scale-[1.02]";
+                const kelasSekunder = "kaca border border-coklatMuda/20 text-coklatTua hover:bg-coklatMuda hover:text-kremBersih hover:border-coklatMuda";
+                
+                tombol.className = `tombol-kompak group flex items-center gap-4 w-full px-5 py-3.5 rounded-full transition-all duration-300 reveal ${item.utama ? kelasUtama : kelasSekunder}`;
+                tombol.style.transitionDelay = `${indeks * 0.1}s`;
+                
+                const warnaIkonHover = item.utama ? '' : 'group-hover:text-kremBersih';
+                const warnaPanah = item.utama ? 'text-kremBersih/40 group-hover:text-kremBersih' : 'text-coklatTua/40 group-hover:text-kremBersih';
+
+                tombol.innerHTML = `
+                    <div class="w-10 h-10 ${item.bg_ikon} rounded-full flex items-center justify-center ${item.warna_ikon} ${warnaIkonHover} group-hover:scale-110 transition-transform flex-shrink-0">
+                        <i data-lucide="${item.ikon}" class="w-5 h-5"></i>
+                    </div>
+                    <div class="text-left flex-1 min-w-0">
+                        <h3 class="font-bold text-sm truncate">${item.nama}</h3>
+                        <p class="text-[10px] opacity-70 font-medium uppercase tracking-wider truncate">${item.sub_teks}</p>
+                    </div>
+                    <i data-lucide="${item.utama ? 'arrow-right' : 'external-link'}" class="w-4 h-4 ${warnaPanah} opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all flex-shrink-0"></i>
+                `;
+                
+                kontainer.appendChild(tombol);
+            });
+        }
+
+        function renderAlbum() {
+            const kontainer = document.getElementById('kontainer-album');
+            
+            dataWebsite.daftar_album.forEach((item, indeks) => {
+                const kartu = document.createElement('a');
+                kartu.href = item.tautan;
+                kartu.target = "_blank";
+                kartu.rel = "noopener noreferrer";
+                kartu.className = "kartu-album reveal relative group block rounded-3xl overflow-hidden shadow-lg aspect-[4/5] md:aspect-square";
+                kartu.style.transitionDelay = `${indeks * 0.1}s`;
+                
+                kartu.innerHTML = `
+                    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('${item.gambar}');"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-coklatTua via-coklatTua/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+                    
+                    <div class="konten-kartu relative h-full flex flex-col justify-end p-6 text-kremBersih">
+                        <div class="tanggal-lencana inline-flex items-center gap-2 bg-kremBersih/20 backdrop-blur-md px-3 py-1 rounded-full w-fit mb-4 border border-kremBersih/30">
+                            <i data-lucide="calendar-days" class="w-3 h-3"></i>
+                            <span class="text-xs font-bold uppercase tracking-wider">${item.tanggal}</span>
+                        </div>
+                        
+                        <h3 class="font-serif text-2xl md:text-3xl font-bold mb-2 leading-tight">${item.nama}</h3>
+                        <p class="text-xs text-kremBersih/80 font-medium uppercase tracking-widest mb-6">${item.kategori}</p>
+                        
+                        <div class="flex items-center justify-between pt-4 border-t border-kremBersih/20">
+                            <span class="text-sm font-medium flex items-center gap-2">
+                                <i data-lucide="images" class="w-4 h-4"></i>
+                                Unduh Album
+                            </span>
+                            <div class="w-8 h-8 bg-kremBersih text-coklatTua rounded-full flex items-center justify-center group-hover:bg-coklatMuda group-hover:text-kremBersih transition-colors">
+                                <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                kontainer.appendChild(kartu);
+                
+                if (window.innerWidth > 768) {
+                    terapkanEfekTilt(kartu);
+                }
+            });
+        }
+
+        function terapkanEfekTilt(elemen) {
+            elemen.addEventListener('mousemove', (e) => {
+                const rect = elemen.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const tengahX = rect.width / 2;
+                const tengahY = rect.height / 2;
+                const rotasiY = ((x - tengahX) / tengahX) * 8;
+                const rotasiX = ((tengahY - y) / tengahY) * 8;
+                elemen.style.transform = `perspective(1000px) rotateX(${rotasiX}deg) rotateY(${rotasiY}deg) scale3d(1.02, 1.02, 1.02)`;
+            });
+            
+            elemen.addEventListener('mouseleave', () => {
+                elemen.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+            });
+        }
+
+        function observasiElemen() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('muncul');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        }
+
+        window.addEventListener('scroll', () => {
+            const tinggiScroll = window.scrollY;
+            const tinggiDokumen = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = (tinggiScroll / tinggiDokumen) * 100;
+            document.getElementById('progress-bar').style.width = progress + '%';
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderIdentitas();
+            renderSosialMedia();
+            renderAlbum();
+            
+            if (window.lucide) lucide.createIcons();
+            
+            setTimeout(observasiElemen, 100);
+        });
+    </script>
+</body>
+</html>
