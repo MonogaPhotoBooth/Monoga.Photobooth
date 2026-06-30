@@ -648,7 +648,7 @@ body {
 }
 
 .footer-text::before {
-    content: '💕 ';
+    content: ' ';
 }
 
 .footer-links {
@@ -1060,7 +1060,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         } else {
             navigator.clipboard.writeText(window.location.href).then(() => {
-                showToast('Link berhasil disalin ke clipboard! 📋');
+                showToast('Link berhasil disalin ke clipboard! ');
             }).catch(() => {
                 showToast('Gagal menyalin link');
             });
