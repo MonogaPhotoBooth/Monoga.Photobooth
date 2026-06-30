@@ -1,517 +1,1125 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+    <!-- ============================================================
+         BAGIAN 1: META INFORMASI DASAR WEBSITE
+         - Meta charset: Pengkodean karakter (UTF-8 untuk support emoji)
+         - Meta viewport: Agar tampilan responsif di HP/Tablet
+         - Title: Judul tab browser
+    ============================================================ -->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="Monoga Photobooth - Your Story Instantly Captured. Booking, Pricelist, dan Download Album Foto Acara Anda.">
-    <title>Monoga Photobooth | Official Linktree & Album Hub</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        kremBersih: '#FDFBF7',
-                        coklatMuda: '#A67B5B',
-                        coklatTua: '#4A3018',
-                        kremGelap: '#F3EFE9',
-                        coklatAksen: '#8B5A3C',
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        serif: ['Playfair Display', 'serif'],
-                    },
-                    animation: {
-                        'fade-in-up': 'fadeInUp 1s cubic-bezier(0.22, 1, 0.36, 1) forwards',
-                        'fade-in-down': 'fadeInDown 1s cubic-bezier(0.22, 1, 0.36, 1) forwards',
-                        'scale-in': 'scaleIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards',
-                        'shimmer': 'shimmer 3s linear infinite',
-                        'float': 'float 6s ease-in-out infinite',
-                        'blob': 'blob 20s infinite',
-                        'marquee': 'marquee 25s linear infinite',
-                    },
-                    keyframes: {
-                        fadeInUp: { '0%': { opacity: '0', transform: 'translateY(40px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
-                        fadeInDown: { '0%': { opacity: '0', transform: 'translateY(-40px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
-                        scaleIn: { '0%': { opacity: '0', transform: 'scale(0.9)' }, '100%': { opacity: '1', transform: 'scale(1)' } },
-                        shimmer: { '0%': { backgroundPosition: '-200% 0' }, '100%': { backgroundPosition: '200% 0' } },
-                        float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-10px)' } },
-                        blob: { '0%, 100%': { transform: 'translate(0, 0) scale(1)' }, '33%': { transform: 'translate(30px, -50px) scale(1.1)' }, '66%': { transform: 'translate(-20px, 20px) scale(0.9)' } },
-                        marquee: { '0%': { transform: 'translateX(0%)' }, '100%': { transform: 'translateX(-50%)' } }
-                    },
-                }
-            }
-        }
-    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MonogaPhotobooth | Your Story Instantly Captured</title>
+    <meta name="description" content="MonogaPhotobooth - Your Story Instantly Captured. Part of Semara Story and Dndbouquet">
 
-    <script src="https://unpkg.com/lucide@latest"></script>
-    
+    <!-- ============================================================
+         BAGIAN 2: FONT & ICON LIBRARY (dari CDN, tidak perlu di-install)
+         - Google Fonts: Poppins (teks) & Playfair Display (judul elegan)
+         - Font Awesome: Ikon sosial media & elemen lainnya
+    ============================================================ -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- ============================================================
+         BAGIAN 3: STYLE CSS (Dikelompokkan per fungsi)
+    ============================================================ -->
     <style>
-        html { scroll-behavior: smooth; }
-        
-        body {
-            background-color: #FDFBF7;
-            color: #4A3018;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
+        /* ------------------------------------------------------------
+           3.1 RESET & BASE STYLES
+           Menghapus margin/padding default browser & atur dasar
+        ------------------------------------------------------------ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #F3EFE9; }
-        ::-webkit-scrollbar-thumb { background: #A67B5B; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #4A3018; }
+        html {
+            scroll-behavior: smooth; /* Scroll halus saat klik link anchor */
+        }
 
-        #preloader {
-            position: fixed; inset: 0; background: #FDFBF7; z-index: 9999;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #8B5E34 0%, #E6D5B8 100%);
+            background-attachment: fixed; /* Background tidak ikut scroll */
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* ------------------------------------------------------------
+           3.2 PRELOADER (Loading Screen Saat Website Dibuka)
+           Tampil 1.5 detik sebelum konten utama muncul
+        ------------------------------------------------------------ */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #8B5E34 0%, #5C3A1F 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999; /* Selalu di paling atas */
             transition: opacity 0.8s ease, visibility 0.8s ease;
         }
-        #preloader.hilang { opacity: 0; visibility: hidden; pointer-events: none; }
-        
-        .lensa-kamera {
-            width: 60px; height: 60px; border: 3px solid #A67B5B; border-radius: 50%;
-            position: relative; display: flex; align-items: center; justify-content: center;
-        }
-        .lensa-kamera::before {
-            content: ''; position: absolute; width: 40px; height: 40px;
-            background: #4A3018; border-radius: 50%; animation: pulse-lensa 1.5s infinite;
-        }
-        @keyframes pulse-lensa {
-            0%, 100% { transform: scale(0.8); opacity: 0.5; }
-            50% { transform: scale(1); opacity: 1; }
+
+        .preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
         }
 
-        .noise-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none; z-index: 50; opacity: 0.04;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        .loader-content {
+            text-align: center;
+            color: white;
         }
 
-        .mesh-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden; }
-        .blob { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.4; }
-        .blob-1 { top: -10%; left: -10%; width: 500px; height: 500px; background: #F3EFE9; }
-        .blob-2 { top: 20%; right: -10%; width: 600px; height: 600px; background: #A67B5B; opacity: 0.15; }
-        .blob-3 { bottom: -20%; left: 20%; width: 700px; height: 700px; background: #8B5A3C; opacity: 0.1; }
-
-        .kaca {
-            background: rgba(253, 251, 247, 0.6);
-            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(166, 123, 91, 0.2);
-            box-shadow: 0 8px 32px 0 rgba(74, 48, 24, 0.05);
+        .camera-loader {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            position: relative;
+            animation: cameraFloat 2s ease-in-out infinite;
         }
-        
-        .tombol-kompak { position: relative; overflow: hidden; }
-        .tombol-kompak::after {
-            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
-            transition: left 0.6s ease;
-        }
-        .tombol-kompak:hover::after { left: 100%; }
 
-        /* === STYLE BARU: LINK BUTTON SEDERHANA === */
+        .camera-loader i {
+            font-size: 50px;
+            color: #E6D5B8;
+            display: block;
+            text-align: center;
+            line-height: 80px;
+        }
+
+        /* Ring yang berputar mengelilingi ikon kamera */
+        .camera-loader::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 3px solid transparent;
+            border-top-color: #E6D5B8;
+            border-right-color: #E6D5B8;
+            border-radius: 50%;
+            animation: spin 1.2s linear infinite;
+        }
+
+        .loader-text {
+            font-size: 14px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 0.5s;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+        @keyframes cameraFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ------------------------------------------------------------
+           3.3 FLOATING PARTICLES (Partikel Melayang di Background)
+           Memberikan efek estetik tanpa mengganggu konten
+        ------------------------------------------------------------ */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Tidak bisa diklik */
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: floatParticle linear infinite;
+        }
+
+        @keyframes floatParticle {
+            0% { transform: translateY(100vh) translateX(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) translateX(100px) rotate(360deg); opacity: 0; }
+        }
+
+        /* ------------------------------------------------------------
+           3.4 CONTAINER UTAMA (Kotak putih di tengah layar)
+        ------------------------------------------------------------ */
+        .container {
+            position: relative;
+            max-width: 480px;
+            margin: 0 auto;
+            background: #f8f9fa;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: containerEntry 1s ease forwards 1.5s;
+        }
+
+        @keyframes containerEntry {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ------------------------------------------------------------
+           3.5 HEADER (Bagian Atas: Logo, Username, Deskripsi)
+        ------------------------------------------------------------ */
+        .header {
+            background: linear-gradient(135deg, #8B5E34 0%, #C08B5C 50%, #E6D5B8 100%);
+            background-size: 200% 200%;
+            animation: gradientShift 8s ease infinite; /* Gradient bergerak pelan */
+            padding: 50px 20px 40px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            animation: patternMove 20s linear infinite;
+            opacity: 0.5;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes patternMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(30px, 30px); }
+        }
+
+        /* Wrapper logo dengan border animasi */
+        .profile-logo-wrapper {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 25px;
+            opacity: 0;
+            animation: logoEntry 1s ease forwards 2s;
+        }
+
+        .profile-logo {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center;
+            background: white;
+            padding: 5px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 2;
+            transition: transform 0.5s ease;
+        }
+
+        /* Border gradien yang berputar mengelilingi logo */
+        .profile-logo-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, #fff, #E6D5B8, #8B5E34, #E6D5B8, #fff);
+            animation: rotateBorder 4s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes rotateBorder { to { transform: rotate(360deg); } }
+
+        .profile-logo:hover {
+            transform: scale(1.05) rotate(5deg);
+        }
+
+        @keyframes logoEntry {
+            from { opacity: 0; transform: scale(0.5) rotate(-180deg); }
+            to { opacity: 1; transform: scale(1) rotate(0deg); }
+        }
+
+        .username {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            position: relative;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 2.3s;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        /* Garis dekoratif di bawah username */
+        .username::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #fff, transparent);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .description {
+            font-size: 14px;
+            line-height: 1.8;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 2.5s;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ------------------------------------------------------------
+           3.6 SOCIAL MEDIA LINK BUTTONS (Tombol Sosial Media)
+        ------------------------------------------------------------ */
+        .links-section {
+            padding: 25px 20px 10px;
+        }
+
         .link-button {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.75rem;
             width: 100%;
-            padding: 1rem 1.5rem;
-            background: rgba(253, 251, 247, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(166, 123, 91, 0.25);
-            border-radius: 1rem;
-            color: #4A3018;
-            font-weight: 600;
-            font-size: 0.95rem;
+            padding: 18px 20px;
+            margin-bottom: 14px;
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 14px;
             text-decoration: none;
-            transition: all 0.3s ease;
+            color: #333;
+            font-weight: 600;
+            font-size: 14px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
             opacity: 0;
+            transform: translateX(-30px);
+        }
+
+        /* Class .revealed ditambahkan via JS untuk animasi masuk */
+        .link-button.revealed {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Efek ripple (gelombang) saat hover */
+        .link-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: #8B5E34;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+            z-index: 0;
+        }
+
+        .link-button span,
+        .link-button i {
+            position: relative;
+            z-index: 1;
+            transition: color 0.3s ease;
+        }
+
+        .link-button i {
+            margin-right: 10px;
+            font-size: 18px;
+        }
+
+        .link-button:hover::before {
+            width: 600px;
+            height: 600px;
+        }
+
+        .link-button:hover {
+            color: white;
+            border-color: #8B5E34;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(139, 94, 52, 0.4);
+        }
+
+        /* Ikon membesar & berputar sedikit saat hover */
+        .link-button:hover i {
+            color: white;
+            animation: iconBounce 0.6s ease;
+        }
+
+        @keyframes iconBounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3) rotate(10deg); }
+        }
+
+        /* ------------------------------------------------------------
+           3.7 ALBUMS SECTION (GAYA KARTU GALERI MODERN)
+           DIUBAH: Sekarang menggunakan grid 2 kolom dengan kartu bergaya galeri
+        ------------------------------------------------------------ */
+        .albums-section {
+            padding: 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 20px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 25px;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .section-title.revealed {
             animation: fadeInUp 0.8s ease forwards;
         }
-        .link-button:hover {
-            background: #A67B5B;
-            color: #FDFBF7;
-            border-color: #A67B5B;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px -5px rgba(166, 123, 91, 0.3);
-        }
-        .link-button i {
-            width: 20px;
-            height: 20px;
-            flex-shrink: 0;
+
+        .section-title i {
+            color: #8B5E34;
+            margin-right: 10px;
+            display: inline-block;
+            animation: downloadPulse 2s ease infinite;
         }
 
-        .kartu-album {
-            transform-style: preserve-3d;
-            transition: transform 0.1s ease-out, box-shadow 0.3s ease;
-            will-change: transform;
-        }
-        .kartu-album:hover { box-shadow: 0 25px 50px -12px rgba(74, 48, 24, 0.25); }
-        .konten-kartu { transform: translateZ(30px); }
-        .tanggal-lencana { transform: translateZ(50px); }
-
-        .reveal {
-            opacity: 0; transform: translateY(30px);
-            transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-        .reveal.muncul { opacity: 1; transform: translateY(0); }
-
-        .teks-shimmer {
-            background: linear-gradient(90deg, #4A3018 0%, #A67B5B 25%, #4A3018 50%, #A67B5B 75%, #4A3018 100%);
-            background-size: 200% 100%;
-            -webkit-background-clip: text; background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shimmer 4s linear infinite;
+        @keyframes downloadPulse {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
         }
 
-        .marquee-container {
-            overflow: hidden; white-space: nowrap;
-            border-top: 1px solid rgba(166, 123, 91, 0.2);
-            border-bottom: 1px solid rgba(166, 123, 91, 0.2);
-            padding: 1rem 0;
+        /* Grid 2 kolom untuk kartu album */
+        .albums-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
         }
-        .marquee-konten { display: inline-block; animation: marquee 25s linear infinite; }
-        .marquee-item {
-            display: inline-flex; align-items: center; gap: 0.5rem; padding: 0 2rem;
-            color: #A67B5B; font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.1rem;
+
+        /* Kartu album dengan gambar sampul */
+        .album-card {
+            position: relative;
+            display: block;
+            aspect-ratio: 3 / 4;
+            border-radius: 16px;
+            overflow: hidden;
+            text-decoration: none;
+            color: white;
+            box-shadow: 0 8px 20px rgba(92, 58, 31, 0.15);
+            opacity: 0;
+            transform: translateY(25px);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
-        
-        .delay-100 { transition-delay: 0.1s; animation-delay: 0.1s; }
-        .delay-200 { transition-delay: 0.2s; animation-delay: 0.2s; }
-        .delay-300 { transition-delay: 0.3s; animation-delay: 0.3s; }
-        .delay-400 { transition-delay: 0.4s; animation-delay: 0.4s; }
+
+        .album-card.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .album-card:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 20px 35px rgba(92, 58, 31, 0.35);
+        }
+
+        /* Background gambar (placeholder jika belum ada foto) */
+        .album-card-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            background-color: #d4c5b5; /* Placeholder warna krem jika belum ada foto */
+            transition: transform 0.6s ease;
+        }
+
+        .album-card:hover .album-card-bg {
+            transform: scale(1.1);
+        }
+
+        /* Overlay gradient coklat agar teks terbaca */
+        .album-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to top,
+                rgba(92, 58, 31, 0.95) 0%,
+                rgba(139, 94, 52, 0.55) 45%,
+                rgba(192, 139, 92, 0.15) 100%
+            );
+            transition: background 0.4s ease;
+        }
+
+        .album-card:hover .album-card-overlay {
+            background: linear-gradient(
+                to top,
+                rgba(92, 58, 31, 0.98) 0%,
+                rgba(139, 94, 52, 0.7) 50%,
+                rgba(192, 139, 92, 0.3) 100%
+            );
+        }
+
+        /* Efek shine/kilau saat hover */
+        .album-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.25),
+                transparent
+            );
+            transition: left 0.7s ease;
+            z-index: 2;
+        }
+
+        .album-card:hover::after {
+            left: 100%;
+        }
+
+        /* Konten teks di dalam kartu */
+        .album-card-content {
+            position: absolute;
+            inset: 0;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            z-index: 3;
+        }
+
+        /* Badge tanggal di pojok atas */
+        .album-card-date {
+            align-self: flex-start;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 10px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: white;
+        }
+
+        .album-card-date i {
+            font-size: 9px;
+        }
+
+        /* Info bawah: nama + kategori */
+        .album-card-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .album-card-category {
+            font-size: 9px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #E6D5B8;
+            opacity: 0.9;
+        }
+
+        .album-card-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 15px;
+            font-weight: 700;
+            line-height: 1.2;
+            color: white;
+            margin-bottom: 8px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* Tombol "Unduh Album" di bawah */
+        .album-card-action {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 8px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .album-card-action span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .album-card-action i {
+            font-size: 10px;
+        }
+
+        .album-card-action .arrow-circle {
+            width: 22px;
+            height: 22px;
+            background: white;
+            color: #8B5E34;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+            transition: all 0.3s ease;
+        }
+
+        .album-card:hover .album-card-action .arrow-circle {
+            background: #E6D5B8;
+            transform: translateX(3px) rotate(-45deg);
+        }
+
+        /* Responsif: di HP sangat kecil, tetap 2 kolom */
+        @media (max-width: 320px) {
+            .albums-grid { gap: 10px; }
+            .album-card-name { font-size: 13px; }
+        }
+
+        /* ------------------------------------------------------------
+           3.8 SHARE BUTTON (Tombol Share Melayang di Kanan Atas)
+        ------------------------------------------------------------ */
+        .share-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px); /* Efek kaca buram */
+            color: #8B5E34;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 18px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            cursor: pointer;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            animation: pulseShare 2s ease infinite;
+        }
+
+        @keyframes pulseShare {
+            0%, 100% { box-shadow: 0 4px 15px rgba(0,0,0,0.15), 0 0 0 0 rgba(255,255,255,0.7); }
+            50% { box-shadow: 0 4px 15px rgba(0,0,0,0.15), 0 0 0 10px rgba(255,255,255,0); }
+        }
+
+        .share-button:hover {
+            background-color: #8B5E34;
+            color: white;
+            transform: rotate(360deg) scale(1.1);
+            animation: none;
+        }
+
+        /* ------------------------------------------------------------
+           3.9 FOOTER (Bagian Bawah)
+        ------------------------------------------------------------ */
+        .footer {
+            background: #f8f9fa;
+            padding: 25px 20px;
+            text-align: center;
+            border-top: 1px solid #e9ecef;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .footer.revealed {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .footer-text {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+
+        .footer-text::before {
+            content: ' ';
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            font-size: 12px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #8B5E34;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        /* Garis bawah muncul saat hover */
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #8B5E34;
+            transition: width 0.3s ease;
+        }
+
+        .footer-links a:hover::after {
+            width: 100%;
+        }
+
+        /* ------------------------------------------------------------
+           3.10 TOAST NOTIFICATION (Pesan Pop-up di Bawah Layar)
+           Pengganti alert() bawaan browser yang lebih elegan
+        ------------------------------------------------------------ */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: linear-gradient(135deg, #8B5E34 0%, #5C3A1F 100%);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            z-index: 9999;
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .toast i {
+            color: #4ade80;
+        }
+
+        /* ------------------------------------------------------------
+           3.11 SCROLL TO TOP BUTTON (Tombol Kembali ke Atas)
+        ------------------------------------------------------------ */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #8B5E34 0%, #C08B5C 100%);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 20px rgba(139, 94, 52, 0.4);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            z-index: 100;
+            font-size: 18px;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 25px rgba(139, 94, 52, 0.6);
+        }
+
+        /* ------------------------------------------------------------
+           3.12 RESPONSIVE DESIGN (Tampilan di HP kecil)
+        ------------------------------------------------------------ */
+        @media (max-width: 480px) {
+            body { padding: 0; }
+            .container { border-radius: 0; min-height: 100vh; }
+            .scroll-top { bottom: 20px; right: 20px; }
+        }
+
+        /* ------------------------------------------------------------
+           3.13 SELECTION & SCROLLBAR CUSTOM
+        ------------------------------------------------------------ */
+        ::selection {
+            background: #8B5E34;
+            color: white;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #E6D5B8; }
+        ::-webkit-scrollbar-thumb {
+            background: #8B5E34;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover { background: #5C3A1F; }
     </style>
 </head>
-<body class="font-sans antialiased">
+<body>
 
-    <div id="preloader">
-        <div class="lensa-kamera mb-4"></div>
-        <p class="text-coklatMuda text-xs tracking-[0.3em] uppercase font-medium">Memuat Momen Anda</p>
+    <!-- ============================================================
+         BAGIAN 4: PRELOADER (Loading Screen)
+         Ditampilkan saat halaman masih loading
+    ============================================================ -->
+    <div class="preloader" id="preloader">
+        <div class="loader-content">
+            <div class="camera-loader">
+                <i class="fas fa-camera-retro"></i>
+            </div>
+            <div class="loader-text">Monoga Photobooth</div>
+        </div>
     </div>
 
-    <div class="mesh-bg">
-        <div class="blob blob-1 animate-blob"></div>
-        <div class="blob blob-2 animate-blob" style="animation-delay: -5s;"></div>
-        <div class="blob blob-3 animate-blob" style="animation-delay: -10s;"></div>
-    </div>
-    <div class="noise-overlay"></div>
+    <!-- ============================================================
+         BAGIAN 5: FLOATING PARTICLES (Diisi otomatis via JavaScript)
+    ============================================================ -->
+    <div class="particles" id="particles"></div>
 
-    <div id="progress-bar" class="fixed top-0 left-0 h-[2px] bg-coklatMuda z-[60]" style="width: 0%;"></div>
+    <!-- ============================================================
+         BAGIAN 6: KONTAINER UTAMA WEBSITE
+    ============================================================ -->
+    <div class="container">
 
-    <main class="relative z-10 min-h-screen flex flex-col items-center px-4 py-12 md:py-20 max-w-2xl mx-auto">
-
-        <header class="text-center w-full mb-10 reveal">
-            <div class="relative inline-block mb-6 animate-scale-in">
-                <div class="absolute inset-0 bg-coklatMuda/20 rounded-full blur-xl animate-pulse"></div>
-                <div id="kontainer-logo" class="relative w-28 h-28 md:w-32 md:h-32 rounded-full border-4 border-kremBersih shadow-xl overflow-hidden bg-kremGelap flex items-center justify-center">
-                </div>
-                <div class="absolute bottom-2 right-2 bg-coklatMuda text-kremBersih p-1.5 rounded-full border-2 border-kremBersih shadow-md">
-                    <i data-lucide="check" class="w-3 h-3"></i>
-                </div>
+        <!-- Tombol Share di pojok kanan atas -->
+        <button id="shareBtn" class="share-button" aria-label="Bagikan Profil">
+            <i class="fas fa-share-alt"></i>
+        </button>
+        
+        <!-- ====== HEADER ====== -->
+        <div class="header">
+            <div class="profile-logo-wrapper">
+                <!-- ⚠️ GANTI src DI BAWAH DENGAN URL/PATH LOGO ASLI ANDA -->
+                <img class="profile-logo" src="logo.png" alt="Logo MonogaPhotoBooth">
             </div>
-
-            <h1 id="teks-brand" class="text-4xl md:text-5xl font-bold text-coklatTua mb-3 tracking-tight reveal delay-100"></h1>
-            <p id="teks-slogan" class="text-coklatTua/70 text-base md:text-lg max-w-sm mx-auto mb-8 reveal delay-200"></p>
-
-            <div id="kontainer-layanan" class="flex flex-wrap justify-center gap-3 mb-8 reveal delay-300"></div>
-        </header>
-
-        <section id="kontainer-sosial" class="w-full space-y-3 mb-12 max-w-md mx-auto"></section>
-
-        <div class="w-full marquee-container mb-16 reveal delay-400">
-            <div class="marquee-konten">
-                <span class="marquee-item"><i data-lucide="sparkles" class="w-4 h-4"></i> Wedding</span>
-                <span class="marquee-item"><i data-lucide="star" class="w-4 h-4"></i> Corporate Event</span>
-                <span class="marquee-item"><i data-lucide="heart" class="w-4 h-4"></i> Engagement</span>
-                <span class="marquee-item"><i data-lucide="calendar" class="w-4 h-4"></i> Birthday</span>
-                <span class="marquee-item"><i data-lucide="flower-2" class="w-4 h-4"></i> Seserahan</span>
-                <span class="marquee-item"><i data-lucide="sparkles" class="w-4 h-4"></i> Wedding</span>
-                <span class="marquee-item"><i data-lucide="star" class="w-4 h-4"></i> Corporate Event</span>
-                <span class="marquee-item"><i data-lucide="heart" class="w-4 h-4"></i> Engagement</span>
-                <span class="marquee-item"><i data-lucide="calendar" class="w-4 h-4"></i> Birthday</span>
-                <span class="marquee-item"><i data-lucide="flower-2" class="w-4 h-4"></i> Seserahan</span>
-            </div>
+            <h1 class="username">@MonogaPhotobooth</h1>
+            <p class="description">
+                Your Story Instantly Captured 📸✨<br>
+                Part Of Semara Story And Dndbouquet
+            </p>
         </div>
 
-        <section class="w-full mb-20">
-            <div class="text-center mb-10 reveal">
-                <h2 class="text-2xl md:text-3xl font-bold teks-shimmer mb-2">Download Album Photobooth</h2>
-                <p class="text-coklatTua/60 text-sm">Temukan acara Anda dan unduh kenangan indah Anda</p>
-                <div class="flex items-center justify-center gap-2 mt-4 text-coklatMuda">
-                    <div class="h-[1px] w-12 bg-coklatMuda/30"></div>
-                    <i data-lucide="download" class="w-4 h-4"></i>
-                    <div class="h-[1px] w-12 bg-coklatMuda/30"></div>
-                </div>
+        <!-- ====== TOMBOL SOSIAL MEDIA ====== -->
+        <!-- 📌 CATATAN: Semua link sosial media sekarang langsung menggunakan tag <a>
+             sehingga event listener WhatsApp/IG/TikTok di JavaScript TIDAK DIPERLUKAN LAGI.
+             Anda tinggal ganti href untuk mengubah tujuan link. -->
+        <div class="links-section">
+            <a href="https://wa.me/6281927310298" class="link-button" target="_blank" data-delay="0">
+                <i class="fab fa-whatsapp"></i>
+                <span>WhatsApp Monoga (Pricelist & Booking)</span>
+            </a>
+            <a href="https://www.instagram.com/monoga.photobooth?igsh=ZXg0MTkzMnRrNjI2" class="link-button" target="_blank" data-delay="100">
+                <i class="fab fa-instagram"></i>
+                <span>Instagram Monoga</span>
+            </a>
+            <a href="https://www.tiktok.com/@monoga.photobooth?_r=1&_t=ZS-97TgrUj5lLQ" class="link-button" target="_blank" data-delay="200">
+                <i class="fab fa-tiktok"></i>
+                <span>Tiktok Monoga</span>
+            </a>
+            <a href="https://www.instagram.com/semara.story?igsh=MTNmbXlvOXUzeHBvdw==" class="link-button" target="_blank" data-delay="300">
+                <i class="fab fa-instagram"></i>
+                <span>(Photography & Videography)</span>
+            </a>
+            <a href="https://www.instagram.com/dndbouquet.mu?igsh=MW1jcmE2NXhxYnljeQ==" class="link-button" target="_blank" data-delay="400">
+                <i class="fab fa-instagram"></i>
+                <span>(Decoration & Seserahan)</span>
+            </a>
+        </div>
+
+        <!-- ====== ALBUM DOWNLOAD SECTION (DIUBAH: Gaya Kartu Galeri) ====== -->
+        <div class="albums-section">
+            <h2 class="section-title">
+                <i class="fas fa-download"></i> Download Album Photobooth
+            </h2>
+            <!-- Grid 2 kolom untuk kartu album -->
+            <div class="albums-grid" id="albumsContainer"></div>
+        </div>
+
+        <!-- ====== FOOTER ====== -->
+        <div class="footer">
+            <p class="footer-text">Bergabung dengan MonogaPhotoBooth</p>
+            <div class="footer-links">
+                <a href="#">Cookie Preferences</a>
+                <a href="#">Report</a>
+                <a href="#">Privacy</a>
             </div>
+        </div>
+    </div>
 
-            <div id="kontainer-album" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
-        </section>
+    <!-- Tombol Scroll to Top -->
+    <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
-        <footer class="text-center text-coklatTua/40 text-xs font-medium tracking-wider uppercase reveal">
-            <div class="flex items-center justify-center gap-2 mb-4">
-                <i data-lucide="camera" class="w-4 h-4"></i>
-                <span>Monoga Photobooth</span>
-            </div>
-            <p>&copy; 2026 All Rights Reserved. Crafted with passion.</p>
-        </footer>
+    <!-- Toast Notification (pesan pop-up) -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Pesan notifikasi</span>
+    </div>
 
-    </main>
-
+    <!-- ============================================================
+         BAGIAN 7: JAVASCRIPT (Dikelompokkan per fungsi)
+    ============================================================ -->
     <script>
-        const dataWebsite = {
-            identitas: {
-                nama_brand: "Monoga Photobooth",
-                slogan: "Your Story, Instantly Captured.",
-                deskripsi: "Abadikan setiap detik berharga Anda bersama kami.",
-                logo_url: "MonogaLogo.png" 
-            },
-            layanan: [
-                { ikon: "" },
-                { ikon: "" }
-            ],
-            sosial_media: [
-                { 
-                    nama: "WhatsApp", 
-                    sub_teks: "Pricelist & Booking", 
-                    ikon: "message-circle", 
-                    tautan: "https://wa.me/6281234567890", 
-                    utama: true,
-                    warna_ikon: "text-green-400",
-                    bg_ikon: "bg-green-500/20"
-                },
-                { 
-                    nama: "Instagram Monoga", 
-                    sub_teks: "Portfolio & Updates", 
-                    ikon: "instagram", 
-                    tautan: "https://instagram.com/monogaphotobooth", 
-                    utama: false,
-                    warna_ikon: "text-pink-600",
-                    bg_ikon: "bg-pink-500/10"
-                },
-                { 
-                    // === TOMBOL INI SUDAH DIGANTI KE FORMAT BARU (gaya_sederhana: true) ===
-                    gaya_sederhana: true,
-                    nama_tampil: "Dndbouquet (Decoration & Seserahan)",
-                    ikon: "flower-2", 
-                    tautan: "https://www.instagram.com/dndbouquet.mu?igsh=MW1jcmE2NXhxYnljeQ==",
-                    delay: 400
-                },
-                { 
-                    nama: "TikTok", 
-                    sub_teks: "Behind The Scenes", 
-                    ikon: "music-2", 
-                    tautan: "https://tiktok.com/@monogaphotobooth", 
-                    utama: false,
-                    warna_ikon: "text-coklatTua",
-                    bg_ikon: "bg-black/5"
-                }
-            ],
-            daftar_album: [
-                {
-                    nama: "Satya Space",
-                    tanggal: "20 Juni",
-                    kategori: "Yoga & Wellness Event",
-                    tautan: "https://fotoshare.co/e/jKCRmLs6c9VlKTmlQRfPL",
-                    gambar: "EVENT1.png"
-                },
-                {
-                    nama: "A Plus Pilates X Earth Love Life",
-                    tanggal: "21 Juni",
-                    kategori: "Community Gathering",
-                    tautan: "https://lumabooth.com/fotoshare/aplus-pilates",
-                    gambar: "https://images.unsplash.com/photo-1518611012118-69608248394b?w=800&q=80"
-                },
-                {
-                    nama: "Alin & Ando (Wedding)",
-                    tanggal: "26 Juni",
-                    kategori: "Wedding Ceremony",
-                    tautan: "https://lumabooth.com/fotoshare/alin-ando",
-                    gambar: "https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80"
-                },
-                {
-                    nama: "Event Seren Lume Yoga",
-                    tanggal: "5 Juli",
-                    kategori: "Retreat & Workshop",
-                    tautan: "https://lumabooth.com/fotoshare/seren-lume",
-                    gambar: "https://images.unsplash.com/photo-1506126613408-cca075b400d2?w=800&q=80"
-                }
-            ]
+        /* ============================================================
+           📌 7.1 KONFIGURASI UTAMA
+           Ubah data di sini untuk mengganti kontak & album
+        ============================================================ */
+
+        // Data kontak sosial media (cadangan, tidak wajib dipakai karena link sudah <a>)
+        const contactInfo = {
+            whatsappNumber: '6281927310298',
+            whatsappMessage: 'Halo MonogaPhotoBooth.',
+            instagramUrl: 'https://www.instagram.com/monoga.photobooth?igsh=ZXg0MTkzMnRrNjI2',
+            tiktokUrl: 'https://www.tiktok.com/@monoga.photobooth'
         };
 
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.getElementById('preloader').classList.add('hilang');
-            }, 800);
-        });
-
-        function renderIdentitas() {
-            const kontainerLogo = document.getElementById('kontainer-logo');
-            if (dataWebsite.identitas.logo_url) {
-                kontainerLogo.innerHTML = `<img src="${dataWebsite.identitas.logo_url}" alt="Logo" class="w-full h-full object-cover">`;
-            } else {
-                kontainerLogo.innerHTML = `<div class="bg-coklatTua w-full h-full flex items-center justify-center"><i data-lucide="camera" class="w-12 h-12 text-kremBersih"></i></div>`;
+        // 📸 DAFTAR ALBUM FOTO (DIUBAH: Tambah field tanggal, kategori, dan gambar)
+        // Untuk menambah album, cukup tambahkan object baru di dalam array
+        // Format: { 
+        //   name: "Nama Album", 
+        //   date: "Tanggal", 
+        //   category: "Kategori", 
+        //   image: "URL_GAMBAR" (kosongkan jika belum ada foto),
+        //   albumLink: "URL_ALBUM" 
+        // }
+        const albums = [
+            { 
+                name: "Satya Space", 
+                date: "20 Juni", 
+                category: "Yoga & Wellness",
+                image: "", // Kosongkan dulu, nanti diisi URL foto
+                albumLink: "https://fotoshare.co/e/jKCRmLs6c9VlKTmlQRfPL" 
+            },
+            { 
+                name: "A Plus Pilates X Earth Love Life", 
+                date: "21 Juni", 
+                category: "Community Event",
+                image: "", // Kosongkan dulu, nanti diisi URL foto
+                albumLink: "https://fotoshare.co/e/xVyBaOVt1PF8EXHlD_zBE" 
+            },
+            { 
+                name: "Alin & Ando", 
+                date: "26 Juni", 
+                category: "Wedding",
+                image: "", // Kosongkan dulu, nanti diisi URL foto
+                albumLink: "https://fotoshare.co/e/-5-NTl1AuZUdy6H1gKZVb" 
+            },
+            { 
+                name: "Event Seren Lume Yoga", 
+                date: "5 Juli", 
+                category: "Retreat",
+                image: "", // Kosongkan dulu, nanti diisi URL foto
+                albumLink: "#" 
             }
+        ];
 
-            document.getElementById('teks-brand').innerHTML = `Monoga <span class="font-serif italic font-normal">Photobooth</span>`;
-            document.getElementById('teks-slogan').textContent = dataWebsite.identitas.deskripsi;
-
-            const kontainerLayanan = document.getElementById('kontainer-layanan');
-            dataWebsite.layanan.forEach(layanan => {
-                if (!layanan.ikon) return;
-                const badge = document.createElement('div');
-                badge.className = "kaca px-4 py-2 rounded-full flex items-center gap-2 text-xs font-semibold text-coklatTua shadow-sm";
-                badge.innerHTML = `<i data-lucide="${layanan.ikon}" class="w-3.5 h-3.5 text-coklatMuda"></i><span>${layanan.teks}</span>`;
-                kontainerLayanan.appendChild(badge);
-            });
+        /* ============================================================
+           🎯 7.2 FUNGSI TOAST NOTIFICATION
+           Menampilkan pesan pop-up di bawah layar
+           (pengganti alert() bawaan browser yang lebih elegan)
+        ============================================================ */
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            toastMessage.textContent = message;
+            toast.classList.add('show');
+            // Hilangkan notifikasi setelah 3 detik
+            setTimeout(() => toast.classList.remove('show'), 3000);
         }
 
-        function renderSosialMedia() {
-            const kontainer = document.getElementById('kontainer-sosial');
-            
-            dataWebsite.sosial_media.forEach((item, indeks) => {
-                // === LOGIKA BARU: Jika item memiliki property `gaya_sederhana`, render dengan format link-button ===
-                if (item.gaya_sederhana) {
-                    const tombol = document.createElement('a');
-                    tombol.href = item.tautan;
-                    tombol.target = "_blank";
-                    tombol.rel = "noopener noreferrer";
-                    tombol.className = "link-button";
-                    tombol.style.animationDelay = `${item.delay || 0}ms`;
-                    tombol.setAttribute('data-delay', item.delay || 0);
-                    tombol.innerHTML = `
-                        <i data-lucide="${item.ikon}"></i>
-                        <span>${item.nama_tampil}</span>
-                    `;
-                    kontainer.appendChild(tombol);
-                    return;
-                }
-
-                // === FORMAT LAMA: Tombol kompleks (untuk item yang belum Anda sesuaikan) ===
-                const tombol = document.createElement('a');
-                tombol.href = item.tautan;
-                tombol.target = "_blank";
-                tombol.rel = "noopener noreferrer";
-                
-                const kelasUtama = "bg-coklatTua text-kremBersih hover:bg-coklatAksen shadow-md hover:shadow-lg hover:scale-[1.02]";
-                const kelasSekunder = "kaca border border-coklatMuda/20 text-coklatTua hover:bg-coklatMuda hover:text-kremBersih hover:border-coklatMuda";
-                
-                tombol.className = `tombol-kompak group flex items-center gap-4 w-full px-5 py-3.5 rounded-full transition-all duration-300 reveal ${item.utama ? kelasUtama : kelasSekunder}`;
-                tombol.style.transitionDelay = `${indeks * 0.1}s`;
-                
-                const warnaIkonHover = item.utama ? '' : 'group-hover:text-kremBersih';
-                const warnaPanah = item.utama ? 'text-kremBersih/40 group-hover:text-kremBersih' : 'text-coklatTua/40 group-hover:text-kremBersih';
-
-                tombol.innerHTML = `
-                    <div class="w-10 h-10 ${item.bg_ikon} rounded-full flex items-center justify-center ${item.warna_ikon} ${warnaIkonHover} group-hover:scale-110 transition-transform flex-shrink-0">
-                        <i data-lucide="${item.ikon}" class="w-5 h-5"></i>
-                    </div>
-                    <div class="text-left flex-1 min-w-0">
-                        <h3 class="font-bold text-sm truncate">${item.nama}</h3>
-                        <p class="text-[10px] opacity-70 font-medium uppercase tracking-wider truncate">${item.sub_teks}</p>
-                    </div>
-                    <i data-lucide="${item.utama ? 'arrow-right' : 'external-link'}" class="w-4 h-4 ${warnaPanah} opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all flex-shrink-0"></i>
-                `;
-                
-                kontainer.appendChild(tombol);
-            });
-        }
-
-        function renderAlbum() {
-            const kontainer = document.getElementById('kontainer-album');
-            
-            dataWebsite.daftar_album.forEach((item, indeks) => {
+        /* ============================================================
+           📁 7.3 FUNGSI MENAMPILKAN DAFTAR ALBUM (DIUBAH: Gaya Kartu Galeri)
+           Membuat kartu album secara otomatis dari array 'albums'
+        ============================================================ */
+        function tampilkanAlbum() {
+            const container = document.getElementById('albumsContainer');
+            albums.forEach(function(album, index) {
                 const kartu = document.createElement('a');
-                kartu.href = item.tautan;
-                kartu.target = "_blank";
-                kartu.rel = "noopener noreferrer";
-                kartu.className = "kartu-album reveal relative group block rounded-3xl overflow-hidden shadow-lg aspect-[4/5] md:aspect-square";
-                kartu.style.transitionDelay = `${indeks * 0.1}s`;
+                kartu.className = 'album-card';
+                kartu.href = album.albumLink;
+                kartu.target = '_blank';
+                kartu.setAttribute('data-delay', index * 120); // Delay animasi berurutan
                 
                 kartu.innerHTML = `
-                    <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('${item.gambar}');"></div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-coklatTua via-coklatTua/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
-                    
-                    <div class="konten-kartu relative h-full flex flex-col justify-end p-6 text-kremBersih">
-                        <div class="tanggal-lencana inline-flex items-center gap-2 bg-kremBersih/20 backdrop-blur-md px-3 py-1 rounded-full w-fit mb-4 border border-kremBersih/30">
-                            <i data-lucide="calendar-days" class="w-3 h-3"></i>
-                            <span class="text-xs font-bold uppercase tracking-wider">${item.tanggal}</span>
+                    <div class="album-card-bg" style="background-image: url('${album.image}');"></div>
+                    <div class="album-card-overlay"></div>
+                    <div class="album-card-content">
+                        <div class="album-card-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>${album.date}</span>
                         </div>
-                        
-                        <h3 class="font-serif text-2xl md:text-3xl font-bold mb-2 leading-tight">${item.nama}</h3>
-                        <p class="text-xs text-kremBersih/80 font-medium uppercase tracking-widest mb-6">${item.kategori}</p>
-                        
-                        <div class="flex items-center justify-between pt-4 border-t border-kremBersih/20">
-                            <span class="text-sm font-medium flex items-center gap-2">
-                                <i data-lucide="images" class="w-4 h-4"></i>
-                                Unduh Album
-                            </span>
-                            <div class="w-8 h-8 bg-kremBersih text-coklatTua rounded-full flex items-center justify-center group-hover:bg-coklatMuda group-hover:text-kremBersih transition-colors">
-                                <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                        <div class="album-card-info">
+                            <span class="album-card-category">${album.category}</span>
+                            <h3 class="album-card-name">${album.name}</h3>
+                            <div class="album-card-action">
+                                <span>
+                                    <i class="fas fa-images"></i>
+                                    Unduh Album
+                                </span>
+                                <div class="arrow-circle">
+                                    <i class="fas fa-arrow-right"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
                 `;
-                
-                kontainer.appendChild(kartu);
-                
-                if (window.innerWidth > 768) {
-                    terapkanEfekTilt(kartu);
-                }
+                container.appendChild(kartu);
             });
         }
 
-        function terapkanEfekTilt(elemen) {
-            elemen.addEventListener('mousemove', (e) => {
-                const rect = elemen.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                const tengahX = rect.width / 2;
-                const tengahY = rect.height / 2;
-                const rotasiY = ((x - tengahX) / tengahX) * 8;
-                const rotasiX = ((tengahY - y) / tengahY) * 8;
-                elemen.style.transform = `perspective(1000px) rotateX(${rotasiX}deg) rotateY(${rotasiY}deg) scale3d(1.02, 1.02, 1.02)`;
-            });
-            
-            elemen.addEventListener('mouseleave', () => {
-                elemen.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
-            });
+        /* ============================================================
+           ⏳ 7.4 FUNGSI PRELOADER
+           Menghilangkan loading screen setelah 1.5 detik
+        ============================================================ */
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                document.getElementById('preloader').classList.add('hidden');
+            }, 1500);
+        });
+
+        /* ============================================================
+           ✨ 7.5 FUNGSI PARTIKEL BACKGROUND
+           Membuat 15 partikel yang melayang di background
+        ============================================================ */
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const particleCount = 15;
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                const size = Math.random() * 15 + 5; // Ukuran acak 5-20px
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = (Math.random() * 20 + 15) + 's';
+                particle.style.animationDelay = Math.random() * 10 + 's';
+                container.appendChild(particle);
+            }
         }
 
-        function observasiElemen() {
+        /* ============================================================
+           👁️ 7.6 FUNGSI SCROLL REVEAL (Animasi Muncul saat di-scroll)
+           Menggunakan Intersection Observer untuk performa optimal
+        ============================================================ */
+        function setupScrollReveal() {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        entry.target.classList.add('muncul');
-                        observer.unobserve(entry.target);
+                        const delay = entry.target.getAttribute('data-delay') || 0;
+                        setTimeout(() => {
+                            entry.target.classList.add('revealed');
+                        }, delay);
                     }
                 });
-            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+            }, { threshold: 0.1 });
 
-            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+            // Daftar elemen yang akan dianimasikan (DIUBAH: tambah .album-card)
+            const elementsToReveal = document.querySelectorAll(
+                '.link-button, .album-card, .section-title, .footer'
+            );
+            elementsToReveal.forEach(el => observer.observe(el));
         }
 
-        window.addEventListener('scroll', () => {
-            const tinggiScroll = window.scrollY;
-            const tinggiDokumen = document.documentElement.scrollHeight - window.innerHeight;
-            const progress = (tinggiScroll / tinggiDokumen) * 100;
-            document.getElementById('progress-bar').style.width = progress + '%';
+        /* ============================================================
+           ⬆️ 7.7 FUNGSI SCROLL TO TOP
+           Tombol kembali ke atas muncul otomatis saat scroll > 300px
+        ============================================================ */
+        window.addEventListener('scroll', function() {
+            const scrollBtn = document.getElementById('scrollTop');
+            if (window.pageYOffset > 300) {
+                scrollBtn.classList.add('visible');
+            } else {
+                scrollBtn.classList.remove('visible');
+            }
         });
 
-        document.addEventListener('DOMContentLoaded', () => {
-            renderIdentitas();
-            renderSosialMedia();
-            renderAlbum();
+        document.getElementById('scrollTop').addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        /* ============================================================
+           🚀 7.8 EVENT LISTENERS (Dijalankan saat DOM siap)
+           ⚠️ FIX BUG: Semua event listener sekarang di dalam DOMContentLoaded
+              sehingga elemen HTML dijamin sudah ada
+        ============================================================ */
+        document.addEventListener('DOMContentLoaded', function() {
             
-            if (window.lucide) lucide.createIcons();
+            // Jalankan fungsi-fungsi awal
+            createParticles();
+            tampilkanAlbum();
             
-            setTimeout(observasiElemen, 100);
+            // Setup scroll reveal (dengan sedikit delay agar semua elemen di-render)
+            setTimeout(setupScrollReveal, 100);
+
+            // ----- TOMBOL SHARE -----
+            document.getElementById('shareBtn').addEventListener('click', async () => {
+                // Cek apakah browser mendukung Web Share API (HP modern)
+                if (navigator.share) {
+                    try {
+                        await navigator.share({
+                            title: 'MonogaPhotoBooth',
+                            text: 'Your Story Instantly Captured 📸✨ Part Of Semara Story And Dndbouquet',
+                            url: window.location.href
+                        });
+                    } catch (error) {
+                        console.log('User membatalkan share:', error);
+                    }
+                } else {
+                    // Fallback untuk browser jadul: copy link ke clipboard
+                    navigator.clipboard.writeText(window.location.href).then(() => {
+                        showToast('Link berhasil disalin ke clipboard! ');
+                    }).catch(() => {
+                        showToast('Gagal menyalin link ');
+                    });
+                }
+            });
         });
     </script>
+
 </body>
 </html>
