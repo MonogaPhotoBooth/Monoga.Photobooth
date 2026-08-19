@@ -2,7 +2,7 @@
 // KONFIGURASI KONTAK & SOSIAL MEDIA
 // ==========================================
 const contactInfo = {
-    whatsappNumber: '6281927310298',
+    whatsappNumber: '6287750700748',
     whatsappMessage: 'Halo MonogaPhotoBooth.',
     instagramUrl: 'https://www.instagram.com/monoga.photobooth?igsh=ZXg0MTkzMnRrNjI2',
     tiktokUrl: 'https://www.tiktok.com/@monoga.photobooth'
@@ -28,7 +28,7 @@ const albums = [
         date: "19 Agustus",
         category: "Wedding",
         albumLink: "https://fotoshare.co/e/CXGHUVakBi_XvwgK_qteg",
-        image: "Hello Monoga!!"
+        image: "https://raw.githubusercontent.com/MonogaPhotoBooth/Monoga.Photobooth/main/Yudi%20%26%20Devi.webp"
     },
     {   name: "SAPPUN",
         date: "8 Agustus",
