@@ -24,10 +24,10 @@ const albums = [
         albumLink: "*",
         image: "Hello Monoga!!"
     },
-    {   name: " Wedding Reception Devi",
+    {   name: " Wedding Reception Yudi & Devi",
         date: "19 Agustus",
         category: "Wedding",
-        albumLink: "*",
+        albumLink: "https://fotoshare.co/e/CXGHUVakBi_XvwgK_qteg",
         image: "Hello Monoga!!"
     },
     {   name: "SAPPUN",
