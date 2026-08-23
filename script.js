@@ -16,9 +16,16 @@ const logoUrl = 'https://raw.githubusercontent.com/MonogaPhotoBooth/Monoga.Photo
 
 /* ---------- DATA ALBUM FOTO ---------- */
 const albums = [
-  {
+   {
     name: "Wedding Reception Koming ",
     date: "28 September ",
+    category: "Wedding ",
+    albumLink: " ",
+    image: "Hello Monoga!! "
+  },
+  {
+    name: "Wedding Reception Surya ",
+    date: "4 September ",
     category: "Wedding ",
     albumLink: " ",
     image: "Hello Monoga!! "
