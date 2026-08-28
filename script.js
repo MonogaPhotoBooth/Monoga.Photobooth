@@ -34,8 +34,8 @@ const albums = [
     name: "Wedding Reception Hendra ",
     date: "28 Agustus ",
     category: "Wedding ",
-    albumLink: " ",
-    image: "Hello Monoga!! "
+    albumLink: "https://fotoshare.co/e/4xkHafCt1ZDjzqbzJKZ71",
+    image: "https://raw.githubusercontent.com/MonogaPhotoBooth/Monoga.Photobooth/refs/heads/main/Hendra%20%26%20Ariantini.webp"
   },
   {
     name: " Wedding Reception Yudi  & Devi ",
