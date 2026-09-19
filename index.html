@@ -1,0 +1,231 @@
+
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MonogaPhotobooth - Your Story Instantly Captured. Part Of Semara Story And Dndbouquet.">
+  <title>MonogaPhotobooth | Your Story Instantly Captured</title>
+
+  <link rel="icon" href="https://raw.githubusercontent.com/MonogaPhotoBooth/Monoga.Photobooth/main/MonogaLogo.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Preloader -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-content">
+      <img src="https://raw.githubusercontent.com/MonogaPhotoBooth/Monoga.Photobooth/main/MonogaLogo.jpg" alt="Logo Monoga Photobooth" class="preloader-logo">
+      <span class="preloader-text">MONOGA PHOTOBOOTH</span>
+    </div>
+    <div class="preloader-bar"><span></span></div>
+  </div>
+
+  <!-- Navbar -->
+  <header class="navbar" id="navbar">
+    <nav class="container nav-container">
+      <a href="#home" class="nav-logo">
+        <img src="https://raw.githubusercontent.com/MonogaPhotoBooth/Monoga.Photobooth/main/MonogaLogo.jpg" alt="Logo Monoga" class="logo-img">
+        <span class="logo-text">MONOGA</span>
+      </a>
+
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#home" class="nav-link active">Beranda</a></li>
+        <li><a href="#social" class="nav-link">Sosial Media</a></li>
+        <li><a href="#gallery" class="nav-link">Galeri</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="share-btn" id="shareBtn" aria-label="Bagikan halaman">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="18" cy="5" r="3"></circle>
+            <circle cx="6" cy="12" r="3"></circle>
+            <circle cx="18" cy="19" r="3"></circle>
+            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+          </svg>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Buka menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+   
+
+  <main>
+
+    <!-- Hero -->
+    <section class="hero" id="home">
+      <div class="hero-bg" aria-hidden="true"></div>
+
+      <div class="container hero-content">
+        <span class="hero-badge reveal">Photobooth Service</span>
+        <h1 class="hero-title reveal">
+          Monoga<em>Photobooth</em>
+        </h1>
+        <p class="hero-desc reveal">
+          Your Story Instantly Captured. Part Of Semara Story And Dndbouquet.
+        </p>
+        <div class="hero-buttons reveal">
+          <a href="#gallery" class="btn btn-outline">Lihat Album</a>
+          <a href="#social" class="btn btn-ghost">Sosial Media</a>
+        </div>
+      </div>
+
+      <div class="hero-scroll" aria-hidden="true">
+        <span class="scroll-line"></span>
+        <span class="scroll-text">Gulir Ke Bawah</span>
+      </div>
+    </section>
+
+    <!-- Marquee -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Wedding</span><span class="dot"></span>
+        <span>Yoga Event</span><span class="dot"></span>
+        <span>Pilates</span><span class="dot"></span>
+        <span>Yoga</span><span class="dot"></span>
+        <span>Your Story Instantly Captured</span><span class="dot"></span>
+        <span>Wedding</span><span class="dot"></span>
+        <span>Yoga Event</span><span class="dot"></span>
+        <span>Pilates</span><span class="dot"></span>
+        <span>Yoga</span><span class="dot"></span>
+        <span>Your Story Instantly Captured</span><span class="dot"></span>
+      </div>
+    </div>
+
+    <!-- Social Media -->
+    <section class="section social" id="social">
+      <div class="container">
+        <!-- Tombol WhatsApp Admin 1 & Admin 2 (tambahan) -->
+        <div class="wa-cta reveal">
+          <span class="wa-cta-label">Respon cepat? Chat admin kami via WhatsApp</span>
+          <div class="wa-cta-btns">
+            <a href="https://wa.me/6281927310298?text=Halo%20Admin%201%20MonogaPhotoBooth,%20saya%20ingin%20bertanya." target="_blank" rel="noopener" class="wa-btn"><svg class="wa-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>Admin 1</a>
+            <a href="https://wa.me/6287750700748?text=Halo%20Admin%202%20MonogaPhotoBooth,%20saya%20ingin%20bertanya." target="_blank" rel="noopener" class="wa-btn wa-btn-2"><svg class="wa-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>Admin 2</a>
+          </div>
+        </div>
+
+        <div class="section-head reveal">
+          <span class="section-tag">Temukan Kami</span>
+          <h2 class="section-title">Sosial <em>Media</em></h2>
+        </div>
+
+        <div class="social-grid">
+          <a href="https://www.instagram.com/monoga.photobooth?igsh=ZXg0MTkzMnRrNjI2" target="_blank" rel="noopener" class="social-card reveal">
+            <div class="social-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </div>
+            <h3>Instagram Monoga</h3>
+            <p>@monoga.photobooth</p>
+            <span class="social-index">01</span>
+          </a>
+
+          <a href="https://www.tiktok.com/@monoga.photobooth" target="_blank" rel="noopener" class="social-card reveal">
+            <div class="social-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 18V5l12-2v13"></path>
+                <circle cx="6" cy="18" r="3"></circle>
+                <circle cx="18" cy="16" r="3"></circle>
+              </svg>
+            </div>
+            <h3>TikTok Monoga</h3>
+            <p>@monoga.photobooth</p>
+            <span class="social-index">02</span>
+          </a>
+
+          <a href="https://www.instagram.com/dndbouquet.mu?igsh=MW1jcmE2NXhxYnljeQ==" target="_blank" rel="noopener" class="social-card reveal">
+            <div class="social-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </div>
+            <h3>Instagram Dndbouquet</h3>
+            <p>Decoration & Seserahan</p>
+            <span class="social-index">03</span>
+          </a>
+
+          <a href="https://www.instagram.com/semara.story?igsh=MTNmbXlvOXUzeHBvdw==" target="_blank" rel="noopener" class="social-card reveal">
+            <div class="social-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </div>
+            <h3>Instagram Semara Story</h3>
+            <p>Photography & Videography</p>
+            <span class="social-index">04</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="section gallery" id="gallery">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-tag">Galeri</span>
+          <h2 class="section-title">Download Album <em>Photobooth</em></h2>
+        </div>
+
+        <div class="filter-bar reveal" id="filterBar" role="tablist"></div>
+
+        <div class="gallery-grid" id="albumsContainer"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <a href="#home" class="nav-logo footer-logo">
+        <img src="https://raw.githubusercontent.com/MonogaPhotoBooth/Monoga.Photobooth/main/MonogaLogo.jpg" alt="Logo Monoga" class="logo-img">
+        <span class="logo-text">MONOGA</span>
+      </a>
+
+      <p class="footer-tagline">Your Story Instantly Captured. Part Of Semara Story And Dndbouquet.</p>
+
+      <div class="footer-bottom">
+        <p>Bergabung dengan MonogaPhotoBooth</p>
+        <div class="footer-legal">
+          <a href="#">Cookie Preferences</a>
+          <a href="#">Report</a>
+          <a href="#">Privacy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to top -->
+  <button class="back-to-top" id="backToTop" aria-label="Kembali ke atas">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="20 6 9 17 4 12"></polyline>
+    </svg>
+    <span id="toastMessage"></span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
