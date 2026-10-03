@@ -17,74 +17,95 @@ const logoUrl = 'https://raw.githubusercontent.com/MonogaPhotoBooth/Monoga.Photo
 /* ---------- DATA ALBUM FOTO ---------- */
 const albums = [
    {
-    name: "Wedding Reception Koming ",
+    name: "Wedding Fajar & Yulia",
+    date: "1 Oktober ",
+    category: "Wedding",
+    albumLink: "https://fotoshare.co/e/323bVZ89V4BgJ0iSnPuOk",
+    image: "https://raw.githubusercontent.com/MonogaPhotoBooth/All-Photo-Banner/main/Wedding%20Fajar%20&%20Yulia.jpg"
+   },
+   {
+    name: "Wedding Yoga & Dewi",
+    date: "29 September ",
+    category: "Wedding",
+    albumLink: "https://fotoshare.co/e/323bVZ89V4BgJ0iSnPuOk",
+    image: "https://raw.githubusercontent.com/MonogaPhotoBooth/All-Photo-Banner/main/Wedding%20Yoga%20&%20Dewi.jpg"
+   },
+   {
+    name: "Wedding Gede & Julia",
     date: "28 September ",
-    category: "Wedding ",
-    albumLink: " ",
-    image: "Hello Monoga!! "
+    category: "Wedding",
+    albumLink: "https://fotoshare.co/e/w90kbMPdp5yTxtOBXXnbD",
+    image: "https://raw.githubusercontent.com/MonogaPhotoBooth/All-Photo-Banner/main/Wedding%20Gede%20&%20Julia.jpg"
+   },
+   {
+    name: "Singamandawa Anniversary",
+    date: "9 September ",
+    category: "Anniversary",
+    albumLink: "https://fotoshare.co/e/FGjW1-Y_LcJlRLfLbH2Sk",
+    image: "https://raw.githubusercontent.com/MonogaPhotoBooth/All-Photo-Banner/main/Singamandawa%20Anniversary.jpg"
   },
   {
-    name: "Wedding Reception Surya ",
-    date: "4 September ",
+    name: "Wedding Reception Surya & Erna ",
+    date: "3 September ",
     category: "Wedding ",
-    albumLink: " ",
-    image: "Hello Monoga!! "
+    albumLink: "https://fotoshare.co/e/x6-doswjFib8mnGHAZN7L",
+    image: "https://raw.githubusercontent.com/MonogaPhotoBooth/All-Photo-Banner/main/Wedding%20Surya%20&%20Erna.jpg"
   },
   {
-    name: "Wedding Reception Hendra ",
+    name: "Wedding Reception Hendra & Ariantini",
     date: "28 Agustus ",
     category: "Wedding ",
     albumLink: "https://fotoshare.co/e/4xkHafCt1ZDjzqbzJKZ71",
     image: "https://raw.githubusercontent.com/MonogaPhotoBooth/Monoga.Photobooth/refs/heads/main/Hendra%20%26%20Ariantini.webp"
   },
   {
-    name: " Wedding Reception Yudi  & Devi ",
+    name: " Wedding Reception Yudi & Devi ",
     date: "19 Agustus ",
     category: "Wedding ",
     albumLink: "https://fotoshare.co/e/CXGHUVakBi_XvwgK_qteg ",
     image: "https://raw.githubusercontent.com/MonogaPhotoBooth/Monoga.Photobooth/main/Yudi%20%26%20Devi.webp "
   },
   {
-    name: "SAPPUN ",
+    name: "Sappun Slow Summer in Bali",
     date: "8 Agustus ",
     category: "Yoga Event ",
     albumLink: "https://fotoshare.co/e/Kaah5kKG2TdjM4dIWJ8iR ",
-    image: "https://raw.githubusercontent.com/MonogaPhotoBooth/Monoga.Photobooth/main/SAPPUN%208%20AGUSTUS.webp "
+    image: "https://raw.githubusercontent.com/MonogaPhotoBooth/Monoga.Photobooth/main/SAPPUN%208%20AGUSTUS.webp"
   },
   {
     name: "Aplus Pilates ",
     date: "11 Juli ",
     category: "Pilates ",
     albumLink: "https://fotoshare.co/e/8DqbOnnOZdwCvEPMbka7P ",
-    image: "https://raw.githubusercontent.com/MonogaPhotoBooth/Monoga.Photobooth/main/Aplus%20Pilates%2011%20Juli.webp "
+    image: "https://raw.githubusercontent.com/MonogaPhotoBooth/Monoga.Photobooth/main/Aplus%20Pilates%2011%20Juli.webp"
   },
   {
     name: "Seren Lume ",
     date: "5 Juli ",
     category: "Yoga ",
     albumLink: "https://fotoshare.co/e/eKbiiIypEGEnOCS1Lnse0 ",
-    image: "https://raw.githubusercontent.com/MonogaPhotoBooth/Monoga.Photobooth/main/Serenlume%205%20Juli.webp "
+    image: "https://raw.githubusercontent.com/MonogaPhotoBooth/Monoga.Photobooth/main/Serenlume%205%20Juli.webp"
   },
   {
     name: "Alin  & Ando ",
     date: "26 Juni ",
     category: "Wedding ",
     albumLink: "https://fotoshare.co/e/-5-NTl1AuZUdy6H1gKZVb ",
-    image: "https://raw.githubusercontent.com/MonogaPhotoBooth/Monoga.Photobooth/main/Ando%20Alin%2026%20Juni.webp "
+    image: "https://raw.githubusercontent.com/MonogaPhotoBooth/Monoga.Photobooth/main/Ando%20Alin%2026%20Juni.webp"
   },
   {
     name: "A Plus Pilates ",
     date: "21 Juni ",
     category: "Pilates ",
     albumLink: "https://fotoshare.co/e/xVyBaOVt1PF8EXHlD_zBE ",
-    image: "https://raw.githubusercontent.com/MonogaPhotoBooth/Monoga.Photobooth/main/A%20Plus%20Pilates%2021%20Juni.webp "
+    image: "https://raw.githubusercontent.com/MonogaPhotoBooth/Monoga.Photobooth/main/A%20Plus%20Pilates%2021%20Juni.webp"
   },
   {
     name: "Satya Space ",
     date: "20 Juni ",
     category: "Yoga ",
     albumLink: "https://fotoshare.co/e/jKCRmLs6c9VlKTmlQRfPL ",
-    image: "https://raw.githubusercontent.com/MonogaPhotoBooth/Monoga.Photobooth/main/Satya%20Space%2020%20Juni.webp "
+    image: "https://raw.githubusercontent.com/MonogaPhotoBooth/Monoga.Photobooth/main/Satya%20Space%2020%20Juni.webp"
   }
 ];
 
