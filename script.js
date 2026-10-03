@@ -17,6 +17,13 @@ const logoUrl = 'https://raw.githubusercontent.com/MonogaPhotoBooth/Monoga.Photo
 /* ---------- DATA ALBUM FOTO ---------- */
 const albums = [
    {
+    name: "Wedding Rizki SOON",
+    date: "16 Oktober ",
+    category: "Wedding",
+    albumLink: "Soon",
+    image: "Monoga!!"
+   },
+   {
     name: "Wedding Fajar & Yulia",
     date: "1 Oktober ",
     category: "Wedding",
@@ -45,21 +52,21 @@ const albums = [
     image: "https://raw.githubusercontent.com/MonogaPhotoBooth/All-Photo-Banner/main/Singamandawa%20Anniversary.jpg"
   },
   {
-    name: "Wedding Reception Surya & Erna ",
+    name: "Wedding Surya & Erna ",
     date: "3 September ",
     category: "Wedding ",
     albumLink: "https://fotoshare.co/e/x6-doswjFib8mnGHAZN7L",
     image: "https://raw.githubusercontent.com/MonogaPhotoBooth/All-Photo-Banner/main/Wedding%20Surya%20&%20Erna.jpg"
   },
   {
-    name: "Wedding Reception Hendra & Ariantini",
+    name: "Wedding Hendra & Ariantini",
     date: "28 Agustus ",
     category: "Wedding ",
     albumLink: "https://fotoshare.co/e/4xkHafCt1ZDjzqbzJKZ71",
     image: "https://raw.githubusercontent.com/MonogaPhotoBooth/Monoga.Photobooth/refs/heads/main/Hendra%20%26%20Ariantini.webp"
   },
   {
-    name: " Wedding Reception Yudi & Devi ",
+    name: " Wedding Yudi & Devi ",
     date: "19 Agustus ",
     category: "Wedding ",
     albumLink: "https://fotoshare.co/e/CXGHUVakBi_XvwgK_qteg ",
