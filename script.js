@@ -24,6 +24,13 @@ const albums = [
     image: "Monoga!!"
    },
    {
+    name: "Wedding Surya & Novita SOON",
+    date: "12 Oktober ",
+    category: "Wedding",
+    albumLink: "Soon",
+    image: "Monoga!!"
+   },
+   {
     name: "Wedding Fajar & Yulia",
     date: "1 Oktober ",
     category: "Wedding",
