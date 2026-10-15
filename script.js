@@ -37,8 +37,8 @@ const albums = [
   },
   {
    name: "Wedding Surya & Novita SOON", date: "12 Oktober", category: "Wedding", 
-   albumLink: "Soon", 
-   image: "Monoga!!" 
+   albumLink: "https://fotoshare.co/e/q5JOTqBz8yL8_LdioqgRx", 
+   image: "https://raw.githubusercontent.com/MonogaPhotoBooth/All-Photo-Banner/main/Wedding%20Surya%20%26%20Novita.jpg" 
   },
   {
    name: "Wedding Fajar & Yulia", date: "1 Oktober", category: "Wedding",
