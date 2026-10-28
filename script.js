@@ -26,9 +26,14 @@ const logoUrl = 'https://raw.githubusercontent.com/MonogaPhotoBooth/Monoga.Photo
    ============================================ */
 const albums = [
   {
-   name: "Wedding Medi & Ana SOON", date: "28 Oktober", category: "Wedding", 
-   albumLink: "Soon", 
-   image: "Monoga!!" 
+   name: "Teazzi Event Hallowen", date: "31 Oktober", category: "Event", 
+   albumLink: "Soon!!", 
+   image: "Soon!!" 
+  },
+  {
+   name: "Wedding Medi & Ana", date: "28 Oktober", category: "Wedding", 
+   albumLink: "https://fotoshare.co/e/TaTXpf7XTO99BWh9_I8H4", 
+   image: "https://raw.githubusercontent.com/MonogaPhotoBooth/All-Photo-Banner/main/Medi%20%26%20Ana.jpg" 
   },
   {
    name: "Wedding Rizki SOON", date: "16 Oktober", category: "Wedding", 
