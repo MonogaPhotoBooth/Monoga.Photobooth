@@ -28,7 +28,7 @@ const albums = [
   {
    name: "Wedding SOON", date: "11 Desember", category: "Event", 
    albumLink: "Soon!!", 
-   image: "Doon!!" 
+   image: "Soon!!" 
   },
   {
    name: "Teazzi Event Hallowen", date: "31 Oktober", category: "Event", 
@@ -41,18 +41,18 @@ const albums = [
    image: "https://raw.githubusercontent.com/MonogaPhotoBooth/All-Photo-Banner/main/Medi%20%26%20Ana.jpg" 
   },
   {
-   name: "Wedding Rizki SOON", date: "16 Oktober", category: "Wedding", 
+   name: "Wedding Rizki", date: "16 Oktober", category: "Wedding", 
    albumLink: "https://fotoshare.co/e/mhyPUyoOTbhtGt6UBsw_z", 
    image: "https://raw.githubusercontent.com/MonogaPhotoBooth/All-Photo-Banner/main/Wedding%20Rizki.jpg" 
   },
   {
-   name: "Wedding Surya & Novita SOON", date: "12 Oktober", category: "Wedding", 
+   name: "Wedding Surya & Novita", date: "12 Oktober", category: "Wedding", 
    albumLink: "https://fotoshare.co/e/q5JOTqBz8yL8_LdioqgRx", 
    image: "https://raw.githubusercontent.com/MonogaPhotoBooth/All-Photo-Banner/main/Wdding%20Surya%20%26%20Novita.jpg" 
   },
   {
    name: "Wedding Fajar & Yulia", date: "1 Oktober", category: "Wedding",
-   albumLink: "https://fotoshare.co/e/323bVZ89V4BgJ0iSnPuOk",
+   albumLink: "https://fotoshare.co/e/jCfI1-C1GDnx-wYFdifX5",
    image: "https://raw.githubusercontent.com/MonogaPhotoBooth/All-Photo-Banner/main/Wedding%20Fajar%20&%20Yulia.jpg"
   },
   {
