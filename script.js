@@ -435,7 +435,7 @@ document.addEventListener('DOMContentLoaded', function () {
 const TRANSFORMERS_CDN = 'https://cdn.jsdelivr.net/npm/@huggingface/transformers@4.3.2';
 
 // Model super ringan: Qwen2.5-0.5B-Instruct (ONNX)
-const MODEL_ID = 'Xenova/Qwen2.5-0.5B-Instruct';
+const MODEL_ID = 'onnx-community/Qwen3-0.6B-ONNX';
 
 let aiPipeline = null;
 let isModelLoading = false;
