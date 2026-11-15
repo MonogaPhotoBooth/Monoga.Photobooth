@@ -362,7 +362,41 @@
     </svg>
     <span id="toastMessage"></span>
   </div>
+<!-- ============ AI CHAT WIDGET ============ -->
+<button class="chat-toggle" id="chatToggle" aria-label="Buka Asisten Monoga">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+</button>
 
+<div class="chat-window" id="chatWindow">
+  <div class="chat-header">
+    <div class="chat-header-info">
+      <span class="chat-status-dot"></span>
+      <div>
+        <strong>Monoga AI</strong>
+        <small>Asisten Virtual</small>
+      </div>
+    </div>
+    <button class="chat-close" id="chatClose" aria-label="Tutup">&times;</button>
+  </div>
+  
+  <div class="chat-messages" id="chatMessages">
+    <div class="chat-msg bot">
+      Halo! Saya asisten Monoga Photobooth. Ada yang bisa saya bantu terkait layanan, lokasi, atau pemesanan?
+    </div>
+  </div>
+
+  <div class="chat-loading" id="chatLoading" hidden>
+    <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+  </div>
+
+  <form class="chat-input-area" id="chatForm">
+    <input type="text" id="chatInput" placeholder="Tanya lokasi, harga, atau booking..." autocomplete="off">
+    <button type="submit" id="chatSend" aria-label="Kirim">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+    </button>
+  </form>
+</div>
+  
   <script src="script.js"></script>
 </body>
 </html>
