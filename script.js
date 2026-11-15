@@ -426,3 +426,137 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
 });
+
+/* ============================================
+   MONOGA AI CHATBOT (Transformers.js + Qwen)
+   ============================================ */
+
+// CDN Transformers.js versi terbaru (v4.3.2)
+const TRANSFORMERS_CDN = 'https://cdn.jsdelivr.net/npm/@huggingface/transformers@4.3.2';
+
+// Model super ringan: Qwen2.5-0.5B-Instruct (ONNX)
+const MODEL_ID = 'Xenova/Qwen2.5-0.5B-Instruct';
+
+let aiPipeline = null;
+let isModelLoading = false;
+let chatHistory = [];
+
+// System Prompt KETAT: Hanya menjawab seputar Monoga Photobooth
+const SYSTEM_PROMPT = `Anda adalah asisten virtual resmi Monoga Photobooth.
+Tugas Anda HANYA menjawab pertanyaan seputar:
+- Lokasi photo booth (berada di Gianyar, Bali).
+- Layanan photo booth (wedding, event, anniversary, yoga, pilates).
+- Harga, paket, dan cara booking.
+- Sosial media dan kontak admin.
+
+ATURAN KETAT:
+1. JANGAN PERNAH menjawab pertanyaan di luar topik Monoga Photobooth.
+2. JANGAN menggunakan pengetahuan umum Anda.
+3. Jika ditanya di luar topik, tolak dengan sopan: "Maaf, saya hanya bisa membantu seputar Monoga Photobooth."
+4. Jawab dengan singkat, ramah, dan jelas dalam Bahasa Indonesia.
+5. Jika tidak tahu jawabannya, katakan: "Silakan hubungi admin kami via WhatsApp untuk informasi lebih lanjut."`;
+
+// Inisialisasi widget chat
+document.addEventListener('DOMContentLoaded', () => {
+  const chatToggle = document.getElementById('chatToggle');
+  const chatWindow = document.getElementById('chatWindow');
+  const chatClose = document.getElementById('chatClose');
+  const chatForm = document.getElementById('chatForm');
+  const chatInput = document.getElementById('chatInput');
+  const chatMessages = document.getElementById('chatMessages');
+  const chatLoading = document.getElementById('chatLoading');
+  const chatSend = document.getElementById('chatSend');
+
+  if (!chatToggle || !chatWindow) return;
+
+  // Buka/Tutup chat
+  chatToggle.addEventListener('click', () => {
+    chatWindow.classList.toggle('open');
+    if (chatWindow.classList.contains('open')) {
+      chatInput.focus();
+      loadModelIfNeeded(); // Muat model saat pertama kali dibuka
+    }
+  });
+
+  chatClose.addEventListener('click', () => chatWindow.classList.remove('open'));
+
+  // Kirim pesan
+  chatForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const userText = chatInput.value.trim();
+    if (!userText || isModelLoading) return;
+
+    chatInput.value = '';
+    appendMessage(userText, 'user');
+    chatLoading.hidden = false;
+    chatSend.disabled = true;
+
+    try {
+      await loadModelIfNeeded(); // Pastikan model siap
+
+      // Bangun prompt dengan system instruction dan riwayat
+      const messages = [
+        { role: 'system', content: SYSTEM_PROMPT },
+        ...chatHistory,
+        { role: 'user', content: userText }
+      ];
+
+      const output = await aiPipeline(messages, {
+        max_new_tokens: 150,
+        temperature: 0.3,
+        do_sample: true,
+        top_p: 0.9,
+      });
+
+      const botReply = output[0].generated_text.at(-1).content;
+
+      // Simpan riwayat (batasi 6 pesan terakhir agar ringan)
+      chatHistory.push({ role: 'user', content: userText });
+      chatHistory.push({ role: 'assistant', content: botReply });
+      if (chatHistory.length > 6) chatHistory = chatHistory.slice(-6);
+
+      appendMessage(botReply, 'bot');
+    } catch (err) {
+      console.error(err);
+      appendMessage('Maaf, terjadi kesalahan. Silakan coba lagi atau hubungi admin via WhatsApp.', 'bot');
+    } finally {
+      chatLoading.hidden = true;
+      chatSend.disabled = false;
+    }
+  });
+
+  // Fungsi memuat model (hanya sekali)
+  async function loadModelIfNeeded() {
+    if (aiPipeline || isModelLoading) return;
+    isModelLoading = true;
+    chatLoading.hidden = false;
+
+    try {
+      const { pipeline, env } = await import(TRANSFORMERS_CDN);
+      
+      // Optimasi: Gunakan cache browser agar tidak unduh ulang
+      env.allowLocalModels = false;
+      env.useBrowserCache = true;
+
+      aiPipeline = await pipeline('text-generation', MODEL_ID, {
+        dtype: 'q4', // Kuantisasi 4-bit, paling ringan
+        device: 'webgpu', // Fallback ke WASM otomatis jika tidak didukung
+      });
+    } catch (err) {
+      console.warn('Gagal memuat model AI:', err);
+      appendMessage('Asisten AI sedang tidak tersedia. Silakan hubungi admin via WhatsApp.', 'bot');
+    } finally {
+      isModelLoading = false;
+      chatLoading.hidden = true;
+    }
+  }
+
+  // Fungsi menampilkan pesan
+  function appendMessage(text, sender) {
+    const div = document.createElement('div');
+    div.className = `chat-msg ${sender}`;
+    div.textContent = text;
+    chatMessages.appendChild(div);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+});
