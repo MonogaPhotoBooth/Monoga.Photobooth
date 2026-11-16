@@ -170,7 +170,7 @@ document.addEventListener('DOMContentLoaded', function () {
       try {
         chatHistory.push({ role: 'user', parts: [{ text: userText }] });
         if (chatHistory.length > 10) chatHistory = chatHistory.slice(-10);
-        const body = { system_instruction: { parts: [{ text: SYSTEM_PROMPT }] }, contents: chatHistory, generationConfig: { temperature: 0.4, maxOutputTokens: 300, topP: 0.9 } };
+        const body = { system_instruction: { parts: [{ text: SYSTEM_PROMPT }] }, contents: chatHistory, generationConfig: { maxOutputTokens: 300, } };
         const res = await fetch(window.MONOGA_CONFIG.PROXY_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
         if (!res.ok) throw new Error('HTTP ' + res.status);
         const data = await res.json();
