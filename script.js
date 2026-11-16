@@ -5,7 +5,7 @@
 // ============================================
 window.MONOGA_CONFIG = {
   PROXY_URL: 'https://monoga-ai.setiawanari16134.workers.dev', // 👈 Pastikan URL ini persis punyamu
-  GEMINI_MODEL: 'gemini-3.8-flash'
+  GEMINI_MODEL: 'gemini-3.5-flash-lite'
 };
 
 const logoUrl = 'https://raw.githubusercontent.com/MonogaPhotoBooth/Monoga.Photobooth/main/MonogaLogo.jpg';
